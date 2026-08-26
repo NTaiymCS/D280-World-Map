@@ -1,0 +1,30 @@
+.page-container {
+  display: flex;
+  width: 100%;
+}
+
+.map-column {
+  width: 70%;
+  padding: 20px;
+}
+
+.info-column {
+  width: 30%;
+  padding: 20px;
+}
+
+svg {
+  width: 100%;
+  height: auto;
+}
+
+path {
+  fill: #cccccc;
+  stroke: #ffffff;
+  stroke-width: 0.5;
+  cursor: pointer;
+}
+
+path:hover {
+  fill: #888888;
+}
