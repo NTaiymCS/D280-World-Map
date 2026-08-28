@@ -7,17 +7,11 @@
   box-sizing: border-box;
 }
 
-
-/* Map section */
-
 .map-column {
   width: 70%;
   padding: 20px;
   box-sizing: border-box;
 }
-
-
-/* Information section */
 
 .info-column {
   width: 30%;
@@ -43,40 +37,27 @@ svg {
 /* Countries */
 
 path {
-  fill: #9eb7cc;
+  fill: #d1d5d8;
   stroke: #ffffff;
   stroke-width: 0.6;
   cursor: pointer;
   transition:
     stroke 0.2s ease,
-    filter 0.2s ease;
+    filter 0.2s ease,
+    transform 0.2s ease;
 }
 
 
-/* Hover effect */
+/* Country hover */
 
 path:hover {
   stroke: #111827;
   stroke-width: 1.5;
-  filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.35));
+  filter: drop-shadow(0 0 6px rgba(0, 0, 0, 0.4));
 }
 
 
-/* Information panel */
-
-.info-column h2 {
-  margin-top: 0;
-  margin-bottom: 20px;
-  font-size: 26px;
-}
-
-.info-column p {
-  margin: 10px 0;
-  line-height: 1.6;
-}
-
-
-/* Map legend */
+/* Legend */
 
 .map-legend {
   margin-top: 18px;
@@ -91,9 +72,6 @@ path:hover {
   font-size: 17px;
 }
 
-
-/* Legend items */
-
 .legend-item {
   display: flex;
   align-items: center;
@@ -101,9 +79,6 @@ path:hover {
   margin: 9px 0;
   font-size: 13px;
 }
-
-
-/* Legend color boxes */
 
 .legend-color {
   width: 22px;
@@ -137,7 +112,7 @@ path:hover {
 }
 
 
-/* Responsive layout */
+/* Responsive */
 
 @media (max-width: 1000px) {
 
@@ -153,14 +128,8 @@ path:hover {
   .map-column {
     padding: 10px;
   }
-
-  .info-column {
-    padding: 20px;
-  }
 }
 
-
-/* Phone */
 
 @media (max-width: 600px) {
 
@@ -168,16 +137,13 @@ path:hover {
     gap: 12px;
   }
 
-  .map-column {
-    padding: 5px;
+  .map-column,
+  .info-column {
+    padding: 10px;
   }
 
   .info-column {
-    padding: 16px;
-  }
-
-  svg {
-    border-radius: 10px;
+    font-size: 14px;
   }
 
   .map-legend {
