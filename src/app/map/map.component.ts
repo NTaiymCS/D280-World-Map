@@ -33,59 +33,100 @@ export class MapComponent implements AfterViewInit {
     this.loadMapData();
   }
 
-  // Load GDP data and color the map
+
+  // Load the World Bank data
+  // and use it to color the map
   loadMapData(): void {
 
     this.worldBankService
-      .getAllGdpPerCapita()
-      .subscribe(data => {
+      .getAllCountries()
+      .subscribe(countryData => {
 
-        if (!data || !data[1]) {
+        if (!countryData || !countryData[1]) {
           return;
         }
 
-        const countries = data[1];
+        const countries = countryData[1];
+
+        const countryMap: {
+          [key: string]: string
+        } = {};
 
         countries.forEach((country: any) => {
 
           if (
-            country.countryiso2code &&
-            country.value !== null
+            country.id &&
+            country.iso2Code
           ) {
 
-            const countryId =
-              country.countryiso2code.toLowerCase();
-
-            const countryPath =
-              document.getElementById(countryId);
-
-            if (countryPath) {
-
-              const color =
-                this.getCountryColor(country.value);
-
-              countryPath.setAttribute(
-                'style',
-                `fill: ${color};`
-              );
-
-              countryPath.setAttribute(
-                'data-gdp',
-                country.value.toString()
-              );
-
-              countryPath.setAttribute(
-                'title',
-                `${country.country.value}: $${this.formatNumber(country.value)} GDP per capita`
-              );
-            }
+            countryMap[
+              country.id.toUpperCase()
+            ] = country.iso2Code.toLowerCase();
           }
         });
+
+
+        this.worldBankService
+          .getAllGdpPerCapita()
+          .subscribe(gdpData => {
+
+            if (!gdpData || !gdpData[1]) {
+              return;
+            }
+
+            const gdpCountries = gdpData[1];
+
+            gdpCountries.forEach(
+              (country: any) => {
+
+                if (
+                  country.countryiso3code &&
+                  country.value !== null
+                ) {
+
+                  const iso3 =
+                    country.countryiso3code.toUpperCase();
+
+                  const iso2 =
+                    countryMap[iso3];
+
+                  if (!iso2) {
+                    return;
+                  }
+
+                  const countryPath =
+                    document.getElementById(iso2);
+
+                  if (!countryPath) {
+                    return;
+                  }
+
+                  const color =
+                    this.getCountryColor(
+                      country.value
+                    );
+
+                  countryPath.style.fill =
+                    color;
+
+                  countryPath.setAttribute(
+                    'data-gdp',
+                    country.value.toString()
+                  );
+
+                  countryPath.setAttribute(
+                    'title',
+                    `${country.country.value}: $${this.formatNumber(country.value)} GDP per capita`
+                  );
+                }
+              }
+            );
+          });
       });
   }
 
 
-  // Decide the country color based on GDP
+  // Assign a color based on GDP per capita
   getCountryColor(value: number): string {
 
     if (value >= 50000) {
@@ -108,7 +149,7 @@ export class MapComponent implements AfterViewInit {
   }
 
 
-  // Format numbers for the country tooltip
+  // Format numbers for the map
   formatNumber(value: number): string {
 
     return new Intl.NumberFormat(
@@ -120,7 +161,7 @@ export class MapComponent implements AfterViewInit {
   }
 
 
-  // Select a country
+  // Select a country on the map
   selectCountry(event: MouseEvent): void {
 
     const country =
@@ -135,7 +176,8 @@ export class MapComponent implements AfterViewInit {
     const countryCode =
       country.id.toLowerCase();
 
-    // Get basic country information
+
+    // Get country information
     this.worldBankService
       .getCountryInfo(countryCode)
       .subscribe(data => {
