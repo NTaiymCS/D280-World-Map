@@ -1,6 +1,9 @@
+/* Main layout */
+
 .page-container {
   display: flex;
   width: 100%;
+  gap: 20px;
 }
 
 .map-column {
@@ -13,18 +16,119 @@
   padding: 20px;
 }
 
+
+/* Map */
+
 svg {
   width: 100%;
   height: auto;
+  display: block;
+  background: #eef3f5;
+  border-radius: 10px;
 }
 
+
+/* Countries */
+
 path {
-  fill: #cccccc;
+  fill: #8fb8a8;
   stroke: #ffffff;
   stroke-width: 0.5;
   cursor: pointer;
+  transition: fill 0.2s ease, stroke 0.2s ease;
 }
 
+
+/* Different country colors */
+
+path:nth-child(5n) {
+  fill: #d6a77a;
+}
+
+path:nth-child(5n + 1) {
+  fill: #8fb8a8;
+}
+
+path:nth-child(5n + 2) {
+  fill: #9eb7cc;
+}
+
+path:nth-child(5n + 3) {
+  fill: #c39aaa;
+}
+
+path:nth-child(5n + 4) {
+  fill: #b8aa83;
+}
+
+
+/* Hover */
+
 path:hover {
-  fill: #888888;
+  fill: #f0a56a;
+  stroke: #222222;
+  stroke-width: 1.2;
+}
+
+
+/* Selected country */
+
+path:active {
+  fill: #e07858;
+}
+
+
+/* Information section */
+
+.info-column {
+  background: #f7f9fa;
+  border-radius: 10px;
+}
+
+.info-column h2 {
+  margin-top: 0;
+}
+
+.info-column p {
+  margin: 8px 0;
+  line-height: 1.5;
+}
+
+
+/* Responsive layout */
+
+@media (max-width: 900px) {
+
+  .page-container {
+    flex-direction: column;
+  }
+
+  .map-column,
+  .info-column {
+    width: 100%;
+    padding: 10px;
+  }
+
+  svg {
+    width: 100%;
+  }
+}
+
+
+/* Phone */
+
+@media (max-width: 600px) {
+
+  .page-container {
+    gap: 10px;
+  }
+
+  .map-column,
+  .info-column {
+    padding: 5px;
+  }
+
+  .info-column {
+    font-size: 14px;
+  }
 }
