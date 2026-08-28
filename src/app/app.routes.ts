@@ -1,7 +1,9 @@
 import { Routes } from '@angular/router';
 import { MapComponent } from './map/map.component';
 
+// Routes for the application
 export const routes: Routes = [
-  { path: '', redirectTo: 'map', pathMatch: 'full' },
-  { path: 'map', component: MapComponent }
+  { path: '', component: MapComponent },
+  { path: 'map', component: MapComponent },
+  { path: '**', redirectTo: '' }
 ];
