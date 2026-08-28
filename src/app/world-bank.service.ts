@@ -9,7 +9,7 @@ export class WorldBankService {
 
   constructor(private http: HttpClient) {}
 
-  // Get basic information for one country
+  // Get information for one country
   getCountryInfo(countryCode: string): Observable<any> {
     return this.http.get(
       'https://api.worldbank.org/v2/country/' +
@@ -31,6 +31,14 @@ export class WorldBankService {
   getAllGdpPerCapita(): Observable<any> {
     return this.http.get(
       'https://api.worldbank.org/v2/country/all/indicator/NY.GDP.PCAP.CD?format=json&mrv=1&per_page=400'
+    );
+  }
+
+  // Get the country list so we can match
+  // World Bank 3-letter codes to 2-letter codes
+  getAllCountries(): Observable<any> {
+    return this.http.get(
+      'https://api.worldbank.org/v2/country?format=json&per_page=400'
     );
   }
 }
