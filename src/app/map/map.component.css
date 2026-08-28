@@ -37,19 +37,17 @@ svg {
   display: block;
   background: #eef4f7;
   border-radius: 14px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
 }
 
 
 /* Countries */
 
 path {
-  fill: #d1d5d8;
+  fill: #9eb7cc;
   stroke: #ffffff;
   stroke-width: 0.6;
   cursor: pointer;
   transition:
-    fill 0.2s ease,
     stroke 0.2s ease,
     filter 0.2s ease;
 }
@@ -58,13 +56,9 @@ path {
 /* Hover effect */
 
 path:hover {
-  fill: #ffffff !important;
   stroke: #111827;
   stroke-width: 1.5;
-  filter:
-    drop-shadow(
-      0 0 5px rgba(0, 0, 0, 0.35)
-    );
+  filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.35));
 }
 
 
@@ -82,7 +76,7 @@ path:hover {
 }
 
 
-/* GDP legend */
+/* Map legend */
 
 .map-legend {
   margin-top: 18px;
@@ -109,7 +103,7 @@ path:hover {
 }
 
 
-/* Color boxes */
+/* Legend color boxes */
 
 .legend-color {
   width: 22px;
@@ -118,54 +112,28 @@ path:hover {
   border: 1px solid rgba(0, 0, 0, 0.15);
 }
 
-
-/* High GDP */
-
 .legend-high {
   background: #176b4d;
 }
-
-
-/* Upper-middle GDP */
 
 .legend-upper-middle {
   background: #4d956c;
 }
 
-
-/* Middle GDP */
-
 .legend-middle {
   background: #d4b24c;
 }
-
-
-/* Lower-middle GDP */
 
 .legend-lower-middle {
   background: #dc8744;
 }
 
-
-/* Low GDP */
-
 .legend-low {
   background: #c94f52;
 }
 
-
-/* No data */
-
 .legend-none {
   background: #d1d5d8;
-}
-
-
-/* Selected country */
-
-.selected-country {
-  stroke: #111827;
-  stroke-width: 2;
 }
 
 
@@ -192,7 +160,7 @@ path:hover {
 }
 
 
-/* Smaller screens */
+/* Phone */
 
 @media (max-width: 600px) {
 
@@ -206,7 +174,6 @@ path:hover {
 
   .info-column {
     padding: 16px;
-    border-radius: 10px;
   }
 
   svg {
