@@ -11,7 +11,23 @@ export class WorldBankService {
 
   getCountryInfo(countryCode: string): Observable<any> {
     return this.http.get(
-      'https://api.worldbank.org/v2/country/' + countryCode + '?format=json'
+      'https://api.worldbank.org/v2/country/' +
+      countryCode +
+      '?format=json'
+    );
+  }
+
+  getGdpPerCapita(countryCode: string): Observable<any> {
+    return this.http.get(
+      'https://api.worldbank.org/v2/country/' +
+      countryCode +
+      '/indicator/NY.GDP.PCAP.CD?format=json&per_page=1'
+    );
+  }
+
+  getAllGdpPerCapita(): Observable<any> {
+    return this.http.get(
+      'https://api.worldbank.org/v2/country/all/indicator/NY.GDP.PCAP.CD?format=json&per_page=400'
     );
   }
 }
